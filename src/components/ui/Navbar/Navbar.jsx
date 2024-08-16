@@ -4,6 +4,7 @@ import {
   AppBar,
   Box,
   Container,
+  Divider,
   Drawer,
   IconButton,
   Link,
@@ -20,7 +21,7 @@ import {
 import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { iconComponents, TOP_LISTS } from '../../../constants';
+import { iconComponents, MOVIE_LISTS, TOP_LISTS } from '../../../constants';
 
 const Icon = ({ iconName }) => {
   const IconComponent = iconComponents[iconName];
@@ -48,6 +49,21 @@ export default function Navbar() {
               <Box sx={{ width: 250 }} onClick={handleDrawerToggle}>
                 <List>
                   {TOP_LISTS.map(item => (
+                    <Link key={item.title} component={RouterLink} to={item.url}>
+                      <ListItem disablePadding>
+                        <ListItemButton>
+                          <ListItemIcon>
+                            <Icon iconName={item.icon} />
+                          </ListItemIcon>
+                          <ListItemText primary={item.title} />
+                        </ListItemButton>
+                      </ListItem>
+                    </Link>
+                  ))}
+                </List>
+                <Divider />
+                <List>
+                  {MOVIE_LISTS.map(item => (
                     <Link key={item.title} component={RouterLink} to={item.url}>
                       <ListItem disablePadding>
                         <ListItemButton>
